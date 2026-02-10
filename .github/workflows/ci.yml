@@ -39,7 +39,7 @@ jobs:
     - name: Test Frontend
       run: |
         cd client
-        npm run test -- --run # "--run" para que Vitest no se quede en modo watch
+        npm run test -- --watch=false
 
     # 5. Frontend: Build (Verificar que compila para producción)
     - name: Build Frontend

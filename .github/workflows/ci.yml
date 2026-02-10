@@ -1,0 +1,47 @@
+name: Atom Task Manager CI/CD
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # 1. Setup Node.js
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
+
+    # 2. Instalar Dependencias (Raíz y subcarpetas si es necesario)
+    - name: Install Dependencies
+      run: |
+        npm install
+        cd client && npm install
+        cd ../functions && npm install
+
+    # 3. Backend: Build (Verificar que compila TS)
+    - name: Build Backend (Functions)
+      run: |
+        cd functions
+        npm run build --if-present
+
+    # 4. Frontend: Test (Unit Testing con Vitest)
+    - name: Test Frontend
+      run: |
+        cd client
+        npm run test -- --run # "--run" para que Vitest no se quede en modo watch
+
+    # 5. Frontend: Build (Verificar que compila para producción)
+    - name: Build Frontend
+      run: |
+        cd client
+        npm run build

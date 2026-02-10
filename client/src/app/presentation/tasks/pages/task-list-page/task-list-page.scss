@@ -1,0 +1,143 @@
+.main-content {
+  padding: 24px 16px;
+  background-color: #f4f7fa;
+  min-height: calc(100vh - 64px);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grid responsivo que se adapta al espacio disponible. */
+  gap: 20px;
+  position: relative;
+}
+
+.empty-state {
+  grid-column: 1 / -1; /* Asegura que el mensaje ocupe todo el ancho del grid si no hay items. */
+  text-align: center;
+  padding: 48px;
+  color: #888;
+
+  .empty-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    color: #ddd;
+  }
+}
+
+.dashboard-controls {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-bottom: 24px;
+
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.control-search {
+  flex: 1;
+  min-width: 250px;
+
+  .dense-search {
+    width: 100%;
+
+    /* Hack para alinear verticalmente el campo de búsqueda con los botones de Material. */
+    ::ng-deep .mat-mdc-form-field-flex {
+      height: 42px;
+      align-items: center;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    ::ng-deep .mat-mdc-input-element {
+      margin-top: -4px;
+    }
+
+    .search-icon {
+      color: #999;
+      margin-right: 8px;
+    }
+  }
+}
+
+.control-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.modern-toggle {
+  height: 42px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+
+  mat-button-toggle {
+    border-left: 1px solid #e0e0e0;
+    background-color: white;
+    font-size: 14px;
+
+    &.mat-button-toggle-checked {
+      background-color: #e3f2fd;
+      color: #1976d2;
+      font-weight: 500;
+    }
+  }
+}
+
+.create-btn {
+  height: 42px;
+  border-radius: 8px;
+  padding: 0 20px;
+}
+
+// --- Media Queries para Responsividad ---
+@media (max-width: 768px) {
+  .dashboard-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .control-search {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .control-actions {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+  }
+
+  /* Ajuste para pantallas muy pequeñas (móviles en vertical). */
+  @media (max-width: 450px) {
+    .control-actions {
+      grid-template-columns: 1fr;
+
+      .modern-toggle {
+        width: 100%;
+        display: flex;
+
+        mat-button-toggle { flex: 1; }
+      }
+
+      .create-btn { width: 100%; }
+    }
+  }
+}

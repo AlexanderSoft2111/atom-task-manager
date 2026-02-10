@@ -1,0 +1,142 @@
+// Estilo de Tarjeta Moderna
+.task-card {
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.05); // Borde sutil
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02); // Sombra muy suave inicial
+  background: white;
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+  padding: 0; // Quitamos padding del mat-card para manejarlo nosotros
+
+  // Efecto Hover: Se levanta
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+    border-color: transparent;
+  }
+
+  // Tira lateral de estado
+  .status-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #ffb74d; // Naranja (Pendiente)
+    transition: background-color 0.3s;
+  }
+
+  .card-content-wrapper {
+    padding: 16px 16px 12px 20px; // Padding izquierdo mayor por la tira
+  }
+
+  // Header
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+
+    .task-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #2c3e50;
+      line-height: 1.4;
+
+      &.strike {
+        text-decoration: line-through;
+        color: #9e9e9e;
+      }
+    }
+
+    .task-date {
+      font-size: 12px;
+      color: #90a4ae;
+      background: #f5f7fa;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+  }
+
+  // Descripción
+  .task-desc {
+    font-size: 14px;
+    color: #546e7a;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+    min-height: 20px; // Evita saltos si no hay texto
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // Footer
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 12px;
+  }
+
+  // Badge de Estado (Estilo Pill)
+  .status-badge {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+
+    // Estado Pendiente (Default)
+    background-color: #fff3e0;
+    color: #ef6c00;
+
+    &.done {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+  }
+
+  // Acciones
+  .actions-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    // Iconos sutiles
+    .action-icon {
+      font-size: 20px;     // Iconos más pequeños y finos
+      width: 20px;
+      height: 20px;
+      color: #b0bec5;      // Gris claro por defecto
+      transition: color 0.2s;
+
+      &.edit:hover { color: #1976d2; }   // Azul al hover
+      &.delete:hover { color: #d32f2f; } // Rojo al hover
+    }
+
+    // Ajuste del checkbox para alinearlo
+    .status-checkbox {
+      margin-left: 4px;
+      transform: scale(0.9); // Un poco más pequeño
+    }
+  }
+
+  // --- ESTADO COMPLETADO (MODIFICADORES) ---
+  &.completed-card {
+    background-color: #fafafa; // Gris muy claro
+
+    .status-indicator {
+      background-color: #4caf50; // Verde
+    }
+
+    .task-desc {
+      color: #b0bec5;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<mat-card class="task-card" [class.completed-card]="task().isCompleted">
+  <div class="status-indicator"></div>
+
+  <div class="card-content-wrapper">
+    <div class="card-header">
+      <h3 class="task-title" [class.strike]="task().isCompleted">
+        {{ task().title }}
+      </h3>
+      <span class="task-date">
+        {{ task().createdAt | date:'d MMM' }}
+      </span>
+    </div>
+
+    <p class="task-desc">
+      {{ task().description || 'Sin descripción adicional.' }}
+    </p>
+
+    <div class="card-footer">
+      <div class="status-badge" [class.done]="task().isCompleted">
+        {{ task().isCompleted ? 'Completada' : 'Pendiente' }}
+      </div>
+
+      <div class="actions-group">
+        <button mat-icon-button (click)="onEdit.emit(task())" matTooltip="Editar">
+          <mat-icon class="action-icon edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="onDelete.emit(task())" matTooltip="Eliminar">
+          <mat-icon class="action-icon delete">delete</mat-icon>
+        </button>
+
+        <mat-checkbox [checked]="task().isCompleted"
+                      (change)="onToggle.emit(task())"
+                      color="primary"
+                      class="status-checkbox">
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+</mat-card>

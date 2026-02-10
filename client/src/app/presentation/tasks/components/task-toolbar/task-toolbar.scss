@@ -1,0 +1,27 @@
+app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.spacer {
+  flex: 1;
+}

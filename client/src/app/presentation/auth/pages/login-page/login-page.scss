@@ -1,0 +1,79 @@
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%); // Gradiente azul Atom
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  border-radius: 16px; // Bordes más redondeados
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); // Sombra profunda (elevación)
+  background: white;
+  z-index: 2;
+  margin: 16px;
+
+  // Animación de entrada suave
+  animation: slideUp 0.5s ease-out;
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  text-align: center;
+
+  .logo-placeholder {
+    background: #e3f2fd;
+    color: #1976d2;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    mat-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  mat-card-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #2c3e50;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-btn {
+  width: 100%;
+  height: 48px; // Botón más alto para mejor touch target
+  font-size: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

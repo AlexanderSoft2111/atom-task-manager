@@ -1,0 +1,45 @@
+.confirm-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+
+  mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  &.primary {
+    background-color: #e3f2fd; // Azul muy claro
+    color: #1976d2;
+  }
+
+  &.warn {
+    background-color: #ffebee; // Rojo muy claro
+    color: #d32f2f;
+  }
+}
+
+.message-text {
+  font-size: 16px;
+  color: #455a64;
+  line-height: 1.5;
+
+  // Para asegurar que el HTML inyectado (negritas) se vea bien
+  ::ng-deep strong, ::ng-deep b {
+    color: #263238;
+    font-weight: 600;
+  }
+}

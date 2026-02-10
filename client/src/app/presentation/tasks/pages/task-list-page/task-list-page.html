@@ -1,0 +1,52 @@
+<app-task-toolbar (onLogout)="logout()"></app-task-toolbar>
+
+<div class="main-content">
+  <div class="container">
+
+    <!-- Controles de filtrado y búsqueda que actualizan directamente las signals del TaskService. -->
+    <div class="dashboard-controls">
+      <div class="control-search">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="dense-search">
+          <mat-icon matPrefix class="search-icon">search</mat-icon>
+          <input matInput [ngModel]="taskService.searchTerm()" (ngModelChange)="onSearch($event)"
+            placeholder="Buscar tareas...">
+        </mat-form-field>
+      </div>
+
+      <div class="control-actions">
+        <mat-button-toggle-group [value]="taskService.filterStatus()" (change)="onFilterChange($event.value)"
+          class="modern-toggle">
+          <mat-button-toggle value="all">Todas</mat-button-toggle>
+          <mat-button-toggle value="pending">Pendientes</mat-button-toggle>
+          <mat-button-toggle value="completed">Listas</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <button mat-flat-button color="primary" class="create-btn" (click)="openTaskDialog()">
+          <mat-icon>add</mat-icon> Nueva
+        </button>
+      </div>
+    </div>
+
+    <!-- El grid de tareas reacciona automáticamente a los cambios en la signal `filteredTasks` del servicio. -->
+    <div class="tasks-grid">
+      @if (isLoading()) {
+      <app-loading-shade></app-loading-shade>
+      } @else {
+      @for (task of taskService.filteredTasks(); track task.id) {
+
+      <app-task-card [task]="task" (onEdit)="openTaskDialog($event)" (onDelete)="deleteTask($event)"
+        (onToggle)="toggleTask($event)">
+      </app-task-card>
+
+      } @empty {
+      <div class="empty-state">
+        <mat-icon class="empty-icon">assignment_late</mat-icon>
+        <h3>Sin tareas aquí</h3>
+        <p>Crea una nueva tarea o ajusta tus filtros.</p>
+      </div>
+      }
+      }
+    </div>
+
+  </div>
+</div>

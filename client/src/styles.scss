@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+/* Reset básico y fuente */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif; /* Fuente estándar de Material */
+  background-color: #f4f7fa; /* Gris azulado muy suave de fondo */
+  color: #333;
+}
+
+/* Scrollbar personalizada (opcional pero nice) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mat-mdc-dialog-container {
+  // Bordes redondeados modernos
+  --mdc-dialog-container-shape: 20px;
+}
+
+.mat-mdc-dialog-surface {
+  // Sombra suave y fondo limpio
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+  background-color: #fff;
+  padding: 0 !important; // Quitamos padding por defecto para controlar nosotros
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header del Diálogo Personalizado */
+.dialog-header {
+  padding: 20px 24px;
+  background-color: #f8f9fa; // Gris muy suave
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+}
+
+/* Cuerpo del Diálogo */
+.dialog-body {
+  padding: 24px;
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Footer de Acciones */
+.dialog-actions {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #eee; // Línea sutil arriba de los botones
+}
+
